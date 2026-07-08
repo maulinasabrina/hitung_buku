@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkulator Buku — Tata Usaha</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <div class="app-logo">
+        <div class="app-logo-icon">📚</div>
+        <div>
+          <div class="app-title">Kalkulator Buku</div>
+          <div class="app-subtitle">Tata Usaha · SD Muhammadiyah</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-body">
+
+      <div class="control-group">
+        <div class="control-label">Pilih Kelas</div>
+        <select id="grade-select" class="grade-select">
+          <option value="" disabled>— Pilih kelas —</option>
+          <option value="3" selected>Kelas 3</option>
+          <option value="4">Kelas 4</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">Pilih Program</div>
+        <div class="radio-list" role="radiogroup">
+
+          <div class="radio-item">
+            <input type="radio" name="program" id="prog-excellent" value="excellent" checked />
+            <label for="prog-excellent">
+              <div class="radio-dot"></div>
+              Excellent
+              <span class="radio-class-hint">3A·B·C / 4A·B·C</span>
+            </label>
+          </div>
+
+          <div class="radio-item">
+            <input type="radio" name="program" id="prog-tahfidz" value="tahfidz" />
+            <label for="prog-tahfidz">
+              <div class="radio-dot"></div>
+              Tahfidz
+              <span class="radio-class-hint">3D / 4D</span>
+            </label>
+          </div>
+
+          <div class="radio-item">
+            <input type="radio" name="program" id="prog-lcp" value="lcp" />
+            <label for="prog-lcp">
+              <div class="radio-dot"></div>
+              LCP
+              <span class="radio-class-hint">3E·F / 4E·F</span>
+            </label>
+          </div>
+
+          <div class="radio-item">
+            <input type="radio" name="program" id="prog-inklusi" value="inklusi" />
+            <label for="prog-inklusi">
+              <div class="radio-dot"></div>
+              Inklusi
+              <span class="radio-class-hint">= Excellent</span>
+            </label>
+          </div>
+
+        </div>
+      </div>
+
+      <button id="btn-load" type="button">↺ Muat Ulang</button>
+
+    </div>
+
+    <div class="sidebar-footer">
+      Klik program → daftar langsung berubah<br/>
+      <strong>Ctrl+A</strong> pilih semua &nbsp;·&nbsp; <strong>Esc</strong> tutup dialog
+    </div>
+  </aside>
+
+  <div id="main">
+
+    <header id="topbar">
+      <span id="topbar-title">Kelas 3 — Excellent</span>
+
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="search" id="search-input" placeholder="Cari nama buku…" autocomplete="off" spellcheck="false" />
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-chip">📦 <span id="stat-total" class="stat-num">0</span> buku</div>
+        <div class="stat-chip">✅ <span id="stat-selected" class="stat-num">0</span> dipilih</div>
+        <div class="stat-chip">⏳ <span id="stat-remaining" class="stat-num">0</span> tersisa</div>
+      </div>
+    </header>
+
+    <main id="book-area">
+      <div id="state-empty">
+        <div class="state-icon">📖</div>
+        <h2>Belum Ada Buku</h2>
+        <p>Pilih kelas dan program di panel kiri.</p>
+      </div>
+      <div id="state-no-results" style="display:none">
+        <div class="state-icon">🔍</div>
+        <h2>Buku Tidak Ditemukan</h2>
+        <p>Tidak ada buku yang cocok. Coba kata kunci lain.</p>
+      </div>
+      <div id="book-grid" style="display:none" role="list"></div>
+    </main>
+
+    <footer id="footer">
+      <div class="footer-total-block">
+        <div class="footer-total-label">Total Harga</div>
+        <div id="footer-total" class="footer-total-amount">Rp0</div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-count-block">
+        <div class="footer-count-label">Buku Dipilih</div>
+        <div id="footer-count" class="footer-count-value">0</div>
+      </div>
+      <div class="footer-divider"></div>
+      <div id="footer-summary" class="footer-summary">
+        <span class="footer-summary-empty">Belum ada buku dipilih</span>
+      </div>
+      <div class="footer-actions">
+        <button id="btn-select-all" class="btn-footer">☑ Pilih Semua</button>
+        <button id="btn-reset" class="btn-footer">🗑 Reset</button>
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+<div id="overlay" role="dialog" aria-modal="true">
+  <div class="dialog">
+    <div class="dialog-icon">⚠️</div>
+    <h2>Reset Semua Pilihan?</h2>
+    <p>Semua buku yang dipilih akan dibatalkan dan total direset ke Rp0.</p>
+    <div class="dialog-actions">
+      <button class="btn-dialog btn-dialog-cancel" id="btn-cancel">Batal</button>
+      <button class="btn-dialog btn-dialog-confirm" id="btn-confirm">Ya, Reset</button>
+    </div>
+  </div>
+</div>
+
+<script src="books.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
